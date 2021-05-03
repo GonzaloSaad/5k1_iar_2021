@@ -48,7 +48,7 @@ def resolve(matrix_str, grey_scale):
     matrix_img_ax = axs[1, 0]
     matrix_img_ax.get_xaxis().set_visible(False)
     matrix_img_ax.get_yaxis().set_visible(False)
-    matrix_img_ax.imshow(matrix, cmap="gray", vmin=0, vmax=grey_scale)
+    matrix_img_ax.imshow(matrix, cmap="gray_r", vmin=0, vmax=grey_scale)
 
     eq_elements = m.get_elements(matrix_eq)
     matrix_eq_ax = axs[0, 1]
@@ -58,7 +58,7 @@ def resolve(matrix_str, grey_scale):
     matrix_eq_img_ax = axs[1, 1]
     matrix_eq_img_ax.get_xaxis().set_visible(False)
     matrix_eq_img_ax.get_yaxis().set_visible(False)
-    matrix_eq_img_ax.imshow(matrix_eq, cmap="gray", vmin=0, vmax=grey_scale)
+    matrix_eq_img_ax.imshow(matrix_eq, cmap="gray_r", vmin=0, vmax=grey_scale)
 
     fig.tight_layout()
     plt.show()
