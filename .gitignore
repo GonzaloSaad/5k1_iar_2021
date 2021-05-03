@@ -1,0 +1,12 @@
+### Jet Brains ###
+.idea
+
+### Python ###
+
+# Virtual Env
+venv
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
