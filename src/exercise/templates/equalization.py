@@ -4,8 +4,11 @@ import numpy as np
 from src import matrix as m
 
 
-def resolve(matrix_str, grey_scale):
-    matrix = m.from_str(matrix_str)
+def resolve(matrix, grey_scale, include_ticks=True):
+
+    if isinstance(matrix, str):
+        matrix = m.from_str(matrix)
+
     elements = m.get_elements(matrix)
 
     # Histogram
@@ -37,7 +40,10 @@ def resolve(matrix_str, grey_scale):
     fig, axs = plt.subplots(2, 2)
 
     for ax in axs[0]:
-        ax.set_xticks(ticks)
+
+        if include_ticks:
+            ax.set_xticks(ticks)
+
         ax.set_xlabel("Intensity")
         ax.set_ylabel("Frequency")
 
