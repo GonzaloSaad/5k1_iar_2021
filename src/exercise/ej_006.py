@@ -1,10 +1,6 @@
 import matplotlib.image as mpimg
 import numpy as np
-from templates import equalization, histogram
-
-#######
-# Inputs
-#######
+from templates import equalization
 
 
 def rgb2gray(img):
@@ -17,7 +13,7 @@ def rgb2gray(img):
 
 
     Args:
-        rgb: The image to convert
+        img: The image to convert
 
     Returns:
         np.ndarray: the grey scale image
@@ -29,11 +25,17 @@ def rgb2gray(img):
 # Solution
 #######
 if __name__ == "__main__":
-
     # Read the image
     img = mpimg.imread("ej_006.png")
+
+    # Parse the image to a grey-scale with 0 to 1 values
     gray = rgb2gray(img)
 
+    # Create a int-256 matrix
+    # This step maybe should NOT be done, and instead
+    # allow the templates to resolve a normalized picture
     matrix = gray * 256
     matrix = matrix.astype(int)
+
+    # Solution
     equalization.resolve(matrix, 256, include_ticks=False)
