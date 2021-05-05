@@ -4,8 +4,10 @@ import numpy as np
 from src import matrix as m
 
 
-def resolve(matrix_str, grey_scale):
-    matrix = m.from_str(matrix_str)
+def resolve(matrix, grey_scale, include_ticks=True):
+    if isinstance(matrix, str):
+        matrix = m.from_str(matrix)
+
     elements = m.get_elements(matrix)
 
     # Histogram
@@ -23,7 +25,10 @@ def resolve(matrix_str, grey_scale):
 
     matrix_ax = axs[0]
     matrix_ax.set_title("Histogram of Matrix")
-    matrix_ax.set_xticks(ticks)
+
+    if include_ticks:
+        matrix_ax.set_xticks(ticks)
+
     matrix_ax.set_xlabel("Intensity")
     matrix_ax.set_ylabel("Frequency")
     matrix_ax.hist(elements, bins=bins, rwidth=0.5, align="mid", edgecolor="black")
