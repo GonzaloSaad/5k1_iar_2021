@@ -1,4 +1,4 @@
-from templates import equalization
+from src.image_processing.templates import equalization
 
 #######
 # Inputs
