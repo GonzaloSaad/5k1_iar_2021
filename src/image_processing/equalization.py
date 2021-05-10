@@ -4,6 +4,26 @@ import numpy as np
 from src import matrix as m
 
 
+def equalize(matrix, grey_scale):
+
+    histogram, histogram_norm = m.histogram(matrix, grey_scale)
+    histogram_eq = np.zeros(grey_scale + 1)
+    for i in range(0, grey_scale):
+        delta_g_first = grey_scale * histogram_norm[i]
+        g_first = delta_g_first + histogram_eq[i - 1] if i > 0 else delta_g_first
+        histogram_eq[i] = g_first
+
+    matrix_eq = np.zeros(matrix.shape)
+    for i in range(0, len(matrix)):
+        row = matrix[i]
+        for j in range(0, len(row)):
+            g = matrix[i, j]
+            g_eq = histogram_eq[g]
+            matrix_eq[i, j] = g_eq
+
+    return matrix_eq
+
+
 def resolve(matrix, grey_scale, include_ticks=True):
 
     if isinstance(matrix, str):
@@ -19,19 +39,7 @@ def resolve(matrix, grey_scale, include_ticks=True):
         print(f"\t{i}\t{histogram[i]}\t\t{histogram_norm[i]}")
 
     # Equalization
-    histogram_eq = np.zeros(grey_scale + 1)
-    for i in range(0, grey_scale):
-        delta_g_first = grey_scale * histogram_norm[i]
-        g_first = delta_g_first + histogram_eq[i - 1] if i > 0 else delta_g_first
-        histogram_eq[i] = g_first
-
-    matrix_eq = np.zeros(matrix.shape)
-    for i in range(0, len(matrix)):
-        row = matrix[i]
-        for j in range(0, len(row)):
-            g = matrix[i, j]
-            g_eq = histogram_eq[g]
-            matrix_eq[i, j] = g_eq
+    matrix_eq = equalize(matrix, grey_scale)
 
     # Display
     bins = np.arange(0, grey_scale + 1.5) - 0.5

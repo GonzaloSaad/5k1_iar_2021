@@ -1,4 +1,4 @@
-from src.image_processing.templates import histogram
+from src.image_processing import histogram
 
 #######
 # Inputs

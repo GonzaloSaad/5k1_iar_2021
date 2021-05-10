@@ -1,13 +1,6 @@
-from enum import Enum
-
 from src import image
 from src.image_processing import filters
-
-
-class FilterType(str, Enum):
-    MEAN = "MEAN"
-    MEDIAN = "MEDIAN"
-
+from src.image_processing.filters import FilterType
 
 #######
 # Solution
