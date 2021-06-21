@@ -1,8 +1,3 @@
-from io import StringIO
-
-import numpy as np
-from numpy import linalg
-
 from src.image import plot_function
 from src.pattern_recognition import linear
 
