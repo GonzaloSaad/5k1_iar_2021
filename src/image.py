@@ -75,3 +75,19 @@ def as_binary(matrix, grey_scale, threshold=None):
                 binary_image[i, j] = grey_scale
 
     return binary_image
+
+
+def plot_function(function, xvals=None, title=None, xlabel="x", ylabel="y"):
+    xvals = xvals or np.linspace(0, 6, 100)
+    yvals = list(map(function, xvals))
+
+    fig, ax = plt.subplots()
+
+    title = title or "Function"
+    ax.set_title(title)
+
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+
+    ax.plot(xvals, yvals)
+    plt.show()
