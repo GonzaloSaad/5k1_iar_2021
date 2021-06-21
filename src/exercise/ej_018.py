@@ -16,9 +16,9 @@ if __name__ == "__main__":
         matrix = img * 256
         matrix = matrix.astype(int)
 
-        convoluted_matrix = convolution.convolute(matrix, mask_type=MaskType.SOBEL)
+        convoluted_matrix = convolution.convolute(matrix, mask_type=MaskType.PREWITT)
 
-        image.display(matrix, convoluted_matrix)
+        image.display(matrix, convoluted_matrix, reverse_grey=False)
 
         print("Siguiente")
         input()
