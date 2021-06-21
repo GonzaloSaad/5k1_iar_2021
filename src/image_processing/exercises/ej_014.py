@@ -6,7 +6,7 @@ from src.image_processing.filters import FilterType
 # Solution
 #######
 if __name__ == "__main__":
-    image_name = "ej_014.png"
+    image_name = "../images/ej_014.png"
 
     img = image.read(image_name)
     matrix = img * 256
