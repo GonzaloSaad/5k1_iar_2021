@@ -1,6 +1,8 @@
+import math
 from enum import Enum
 
 import numpy as np
+from scipy import ndimage
 
 
 class MaskType(str, Enum):
@@ -8,7 +10,7 @@ class MaskType(str, Enum):
     SOBEL = "SOBEL"
 
 
-_MASKS = {
+_X_AXIS_MASKS = {
     MaskType.PREWITT: np.array([
         [1, 0, -1],
         [1, 0, -1],
@@ -16,16 +18,34 @@ _MASKS = {
     ]),
     MaskType.SOBEL: np.array([
         [1, 0, -1],
-        [1, 0, -1],
+        [2, 0, -2],
         [1, 0, -1],
     ]),
 }
+
+_Y_AXIS_MASKS = {
+    MaskType.PREWITT: np.array([
+        [1, 1, 1],
+        [0, 0, 0],
+        [-1, -1, -1],
+    ]),
+    MaskType.SOBEL: np.array([
+        [1, 2, 1],
+        [0, 0, 0],
+        [-1, -2, -1],
+    ]),
+}
+
+
+def convolute_py(matrix, mask_type=MaskType.SOBEL):
+    return ndimage.sobel(matrix)
 
 
 def convolute(matrix, mask_type=MaskType.PREWITT):
     convoluted_image = np.full_like(matrix, 0)
 
-    mask = _MASKS[mask_type]
+    x_mask = _X_AXIS_MASKS[mask_type]
+    y_mask = _Y_AXIS_MASKS[mask_type]
 
     rows, columns = matrix.shape
     for i in range(0, rows):
@@ -36,7 +56,9 @@ def convolute(matrix, mask_type=MaskType.PREWITT):
 
             if row_in_range and column_in_range:
                 vicinity = matrix[(i - 1):(i + 2), (j - 1):(j + 2)]
-                value = sum(sum(vicinity * mask))
+                y_gradient = sum(sum(vicinity * y_mask))
+                x_gradient = sum(sum(vicinity * x_mask))
+                value = math.sqrt((x_gradient**2) + y_gradient**2)
             else:
                 value = matrix[i, j]
 

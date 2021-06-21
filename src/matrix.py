@@ -67,3 +67,18 @@ def histogram(matrix, grey_scale) -> Tuple[np.ndarray, np.ndarray]:
     hist_norm = hist / len(elements)
 
     return hist, hist_norm
+
+
+def iterate(matrix):
+    """
+    Iterates over matrix elements in a generator-style
+    Args:
+        matrix (np.ndarray): matrix to iterate over
+
+    Yields:
+        (int, int, Any): row, column, value
+    """
+    rows, columns = matrix.shape
+    for i in range(0, rows):
+        for j in range(columns):
+            yield i, j, matrix[i, j]
