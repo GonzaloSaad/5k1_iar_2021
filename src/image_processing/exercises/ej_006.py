@@ -5,7 +5,7 @@ from src.image_processing import equalization
 # Solution
 #######
 if __name__ == "__main__":
-    image_name = "ej_006.png"
+    image_name = "../images/ej_006.png"
 
     # Read the image
     img = image.read(image_name)

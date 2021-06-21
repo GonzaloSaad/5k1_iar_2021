@@ -3,8 +3,8 @@ from src.image_processing import convolution
 from src.image_processing.convolution import MaskType
 
 _IMAGES = [
-    "ej_018_0.png",
-    "ej_018_1.png",
+    "../images/ej_018_0.png",
+    "../images/ej_018_1.png",
 ]
 
 #######
