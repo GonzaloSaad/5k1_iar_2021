@@ -8,7 +8,7 @@ def equalize(matrix, grey_scale):
 
     histogram, histogram_norm = m.histogram(matrix, grey_scale)
     histogram_eq = np.zeros(grey_scale + 1)
-    for i in range(0, grey_scale):
+    for i in range(0, grey_scale + 1):
         delta_g_first = grey_scale * histogram_norm[i]
         g_first = delta_g_first + histogram_eq[i - 1] if i > 0 else delta_g_first
         histogram_eq[i] = g_first
