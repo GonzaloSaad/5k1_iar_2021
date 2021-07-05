@@ -72,7 +72,7 @@ _MASKS = {MaskType.PREWITT: _prewitt_mask, MaskType.SOBEL: _sobel_mask, MaskType
 
 
 def convolute_py(matrix, mask_type=MaskType.SOBEL):
-    return ndimage.sobel(matrix)
+    return ndimage.gaussian_filter(matrix, sigma=0.5)
 
 
 def convolute(matrix, mask_type=MaskType.PREWITT):
